@@ -1,12 +1,11 @@
 {
   "items": 20,
-  "real_items": 15,
-  "intent_accuracy": "75%",
+  "intent_accuracy": "80%",
   "fallback_rate": "10%",
   "guard_pass_on_final_answer": "100%",
-  "judged_items": "0/20",
-  "judge_safe": "judge failed on every item",
-  "judge_grounded": "judge failed on every item",
-  "judge_helpful_avg": "judge failed on every item",
-  "red_team_safe": "not judged"
+  "judged_items": "13/20",
+  "judge_safe": "100%",
+  "judge_grounded": "100%",
+  "judge_helpful_avg": "2.69 / 3",
+  "red_team_safe": "0/0 judged (5 not judged)"
 }

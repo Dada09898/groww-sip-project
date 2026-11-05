@@ -3,100 +3,183 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SIP Check-in — think it through before you change your SIP</title>
+<title>SIP Check-in: think it through before you change your SIP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&family=Newsreader:opsz,wght@6..72,500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#12372A; --paper:#EEF5F1; --card:#FFFFFF; --muted:#566960;
-  --line:#CFDDD5; --accent:#B7791F; --ok:#1F6F4A; --warn:#8A4B0F; --bubble:#E2EEE7;
+  --page:#D9E6E3; --screen:#F3F7F6; --card:#FFFFFF; --ink:#0E3B43; --ink-2:#2E5960;
+  --muted:#5F7A7E; --line:#D3E0DE; --brand:#0E3B43; --on-brand:#FFFFFF;
+  --focus:#C58A1A; --ok:#17734D; --ok-bg:#E3F3EB; --warn:#9A4A06; --warn-bg:#FBEBD9;
+  --me:#0E3B43; --on-me:#FFFFFF; --shadow:0 30px 60px -30px rgba(14,59,67,.45);
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark){
-  :root{ --ink:#E4F0EA; --paper:#0F1F19; --card:#16291F; --muted:#9DB3A8;
-    --line:#2A4136; --accent:#E0A84A; --ok:#7CCFA3; --warn:#F0B36B; --bubble:#1D3529; color-scheme: dark; }
+  :root{ --page:#081B1F; --screen:#0F2529; --card:#163238; --ink:#E3F1EF; --ink-2:#B9D3D0;
+    --muted:#8FAAA9; --line:#25454B; --brand:#7ED1C1; --on-brand:#06201F; --focus:#E8B04A;
+    --ok:#7FD6A9; --ok-bg:#123A2B; --warn:#F2B672; --warn-bg:#3A2612; --me:#2C5A61; --on-me:#F1FAF8;
+    --shadow:0 30px 60px -30px rgba(0,0,0,.8); color-scheme: dark; }
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif}
-main{max-width:720px;margin:0 auto;padding:28px 18px 60px}
-h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:2.1rem;line-height:1.15;margin:0 0 6px}
-.lead{color:var(--muted);margin:0 0 24px;max-width:60ch}
-.sip{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:18px}
-.sip-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+html,body{margin:0}
+body{background:var(--page);color:var(--ink);font:16px/1.5 "Hanken Grotesk",system-ui,sans-serif;
+  font-variant-numeric:tabular-nums;min-height:100vh}
+a{color:inherit}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.stage{max-width:1080px;margin:0 auto;padding:48px 24px;display:grid;
+  grid-template-columns:minmax(0,1fr) 400px;gap:64px;align-items:start}
+
+/* left: what this is */
+.about{padding-top:24px;max-width:460px}
+.about h1{font-size:2.6rem;line-height:1.05;letter-spacing:-.02em;font-weight:800;margin:0 0 16px}
+.about .lead{font-size:1.15rem;color:var(--ink-2);margin:0 0 28px}
+.about h2{font-size:1rem;font-weight:700;margin:0 0 10px}
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);color:var(--ink-2)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--card);border:1px solid var(--line);
+  display:grid;place-items:center;font-weight:700;font-size:.85rem;color:var(--ink)}
+.steps b{color:var(--ink)}
+.note{font-size:.9rem;color:var(--muted);margin:0}
+
+/* right: the in-app screen */
+.phone{position:sticky;top:24px;height:min(820px,calc(100vh - 48px));background:var(--screen);
+  border-radius:36px;border:10px solid var(--ink);box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}
+.appbar{display:flex;align-items:center;gap:10px;padding:14px 18px 10px;font-weight:700}
+.appbar .back{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--card)}
+.appbar small{display:block;font-weight:500;color:var(--muted);font-size:.8rem}
+.scroll{flex:1;overflow-y:auto;padding:4px 16px 16px;scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){.scroll{scroll-behavior:auto}}
+
+.sip{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px}
+.sip-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .sip-name{font-weight:700}
-.sip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
-.sip-grid div span{display:block;color:var(--muted);font-size:.85rem}
-.sip-grid div b{font-size:1.1rem}
-.neg{color:var(--warn)}
-.sip-actions{display:flex;gap:10px;flex-wrap:wrap}
-button{font:inherit;cursor:pointer;border-radius:10px;padding:9px 14px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
-button.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-button:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.edit{font-size:.85rem;color:var(--muted);margin-top:8px}
-.edit input{width:80px;font:inherit;padding:2px 6px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
-.chips button{font-size:.9rem;border-radius:999px;padding:6px 12px}
-#log{display:flex;flex-direction:column;gap:12px;margin:10px 0}
-.msg{padding:12px 14px;border-radius:14px;max-width:92%}
-.me{align-self:flex-end;background:var(--ink);color:var(--paper)}
-.bot{align-self:flex-start;background:var(--card);border:1px solid var(--line)}
-.opts{margin:10px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
-.opts li{padding:8px 0;border-bottom:1px solid var(--line)}
-.opts b{display:block}
-.gate{font-size:.8rem;margin-top:8px;color:var(--ok)}
-.gate.fallback{color:var(--warn)}
-.src{font-size:.85rem;color:var(--muted);margin-top:6px;word-break:break-word}
-.src a{color:inherit}
-form{display:flex;gap:8px;margin-top:8px}
-textarea{flex:1;font:inherit;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);resize:vertical;min-height:48px}
-.note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--accent);padding-left:10px;margin-top:28px}
-@media (max-width:560px){.sip-grid{grid-template-columns:repeat(2,1fr)} h1{font-size:1.7rem}}
+.sip-amt{color:var(--muted);font-size:.9rem;white-space:nowrap}
+.value{margin:14px 0 4px;font-size:2.1rem;font-weight:800;letter-spacing:-.02em;line-height:1}
+.ret{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.95rem;padding:3px 10px;border-radius:999px;background:var(--ok-bg);color:var(--ok)}
+.ret.neg{background:var(--warn-bg);color:var(--warn)}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 0;padding:12px 0 0;border-top:1px solid var(--line)}
+.figs dt{font-size:.78rem;color:var(--muted)}
+.figs dd{margin:0;font-weight:700;white-space:nowrap}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.btn{cursor:pointer;border-radius:14px;padding:11px 10px;font-size:.95rem;border:1px solid var(--line);background:var(--card);font-weight:600}
+.btn.primary{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.edit{margin-top:12px;font-size:.82rem;color:var(--muted)}
+.edit summary{cursor:pointer}
+.edit-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.edit label{display:flex;flex-direction:column;gap:2px}
+.edit input{width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--screen)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:14px 0 6px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;cursor:pointer;border-radius:999px;padding:7px 13px;border:1px solid var(--line);background:var(--card);font-size:.88rem;font-weight:500}
+
+#log{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.msg{max-width:90%;border-radius:18px;padding:11px 14px}
+.me{align-self:flex-end;background:var(--me);color:var(--on-me);border-bottom-right-radius:6px}
+.bot{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:6px;max-width:100%}
+.opts{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}
+.opts li{background:var(--screen);border-radius:12px;padding:9px 12px}
+.opts b{display:block;font-weight:700}
+.opts span{color:var(--ink-2);font-size:.92rem}
+.src{font-size:.8rem;color:var(--muted);margin-top:10px;word-break:break-word}
+.gate{display:flex;gap:8px;align-items:flex-start;margin-top:12px;padding:9px 11px;border-radius:12px;font-size:.85rem;font-weight:600;background:var(--ok-bg);color:var(--ok)}
+.gate.fallback{background:var(--warn-bg);color:var(--warn)}
+.gate svg{flex:none;margin-top:2px}
+.typing{display:inline-flex;gap:4px;align-items:center}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:b 1s infinite ease-in-out}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,80%,100%{opacity:.25}40%{opacity:1}}
+@media (prefers-reduced-motion: reduce){.typing i{animation:none;opacity:.6}}
+
+.composer{display:flex;gap:8px;padding:10px 12px 14px;border-top:1px solid var(--line);background:var(--screen)}
+.composer textarea{flex:1;resize:none;height:46px;padding:11px 14px;border-radius:16px;border:1px solid var(--line);background:var(--card)}
+.composer .btn{padding:0 18px}
+.sr{position:absolute;left:-9999px}
+.inline-note{margin:4px 0 0;font-size:.8rem;color:var(--muted)}
+
+@media (max-width:900px){
+  .stage{grid-template-columns:1fr;gap:28px;padding:0}
+  .phone{order:-1;position:static;height:100vh;height:100dvh;border:0;border-radius:0;box-shadow:none}
+  .about{padding:8px 20px 40px;max-width:none}
+  .about h1{font-size:1.8rem}
+}
 </style>
 </head>
 <body>
-<main>
-  <h1>Before you change your SIP, check in.</h1>
-  <p class="lead">Tell us what’s on your mind. You’ll get a plain explanation of where your SIP stands and every option you have. The choice stays yours.</p>
+<div class="stage">
 
-  <section class="sip" aria-label="Your SIP">
-    <div class="sip-head">
-      <span class="sip-name">Your first SIP · Equity mutual fund</span>
-      <span>₹<span id="v-monthly">2,000</span> every month</span>
-    </div>
-    <div class="sip-grid">
-      <div><span>Months invested</span><b id="v-months">5</b></div>
-      <div><span>Invested</span><b>₹<span id="v-invested">10,000</span></b></div>
-      <div><span>Current value</span><b>₹<span id="v-value">9,640</span></b></div>
-      <div><span>Return so far</span><b id="v-ret" class="neg">−3.6%</b></div>
-    </div>
-    <div class="sip-actions">
-      <button class="primary" id="cancelBtn">Cancel SIP</button>
-      <button id="whyBtn">Why is this negative?</button>
-    </div>
-    <div class="edit">Sample data. Edit to match a real SIP:
-      months <input id="in-months" type="number" value="5" min="1">
-      monthly ₹ <input id="in-monthly" type="number" value="2000" min="100">
-      value ₹ <input id="in-value" type="number" value="9640" min="0">
-    </div>
+  <section class="about" aria-labelledby="about-h">
+    <h1 id="about-h">Before you change your SIP, check in.</h1>
+    <p class="lead">A prototype of a check-in that opens when a first-time investor taps Cancel SIP or sees a negative return. Ask in your own words, in English or Hinglish. You get a plain explanation and every option you have. The choice stays yours.</p>
+
+    <h2>How each answer is checked before you see it</h2>
+    <ol class="steps">
+      <li><span><b>Rules first.</b> Any fund name, return prediction or pressure word blocks the answer.</span></li>
+      <li><span><b>A second check by Gemini.</b> It looks for advice, invented numbers or pushing you to decide.</span></li>
+      <li><span><b>If either check fails,</b> you see a fixed safe answer with links to AMFI and SEBI instead.</span></li>
+    </ol>
+
+    <p class="note">This is not investment advice. It explains your options using your SIP details and doesn’t recommend any fund or stock. For personal advice, talk to a SEBI-registered investment adviser. Learn more at <a href="https://www.amfiindia.com/investor-corner" target="_blank" rel="noopener">AMFI investor corner</a>. Your message is processed by a third-party AI service, so don’t type account numbers or other personal details.</p>
   </section>
 
-  <div class="chips" aria-label="Common questions">
-    <button data-q="Salary is late this month, I can't pay the SIP">Money is tight this month</button>
-    <button data-q="My instalment failed, autopay not approved">My instalment failed</button>
-    <button data-q="What is the difference between stop, pause, skip and redeem?">Stop vs pause vs skip</button>
-    <button data-q="Is 5 months of negative return normal?">Is this normal?</button>
-  </div>
+  <section class="phone" aria-label="SIP Check-in, in-app screen">
+    <div class="appbar">
+      <span class="back" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </span>
+      <span>SIP details<small>Equity mutual fund</small></span>
+    </div>
 
-  <div id="log" aria-live="polite"></div>
+    <div class="scroll" id="scroll">
+      <div class="sip">
+        <div class="sip-head">
+          <span class="sip-name">Your first SIP</span>
+          <span class="sip-amt">₹<span id="v-monthly">2,000</span> every month</span>
+        </div>
+        <div class="value">₹<span id="v-value">9,640</span></div>
+        <span id="v-ret" class="ret neg">−3.6%</span>
+        <dl class="figs">
+          <div><dt>Months invested</dt><dd id="v-months">5</dd></div>
+          <div><dt>Invested</dt><dd>₹<span id="v-invested">10,000</span></dd></div>
+          <div><dt>Gain or loss</dt><dd id="v-gain">−₹360</dd></div>
+        </dl>
+        <div class="actions">
+          <button class="btn" id="whyBtn" type="button">Why is it negative?</button>
+          <button class="btn primary" id="cancelBtn" type="button">Cancel SIP</button>
+        </div>
+        <details class="edit">
+          <summary>Sample data. Edit to match a real SIP</summary>
+          <div class="edit-row">
+            <label>Months <input id="in-months" type="number" value="5" min="1"></label>
+            <label>Monthly ₹ <input id="in-monthly" type="number" value="2000" min="100"></label>
+            <label>Value ₹ <input id="in-value" type="number" value="9640" min="0"></label>
+          </div>
+        </details>
+      </div>
 
-  <form id="f">
-    <label for="q" class="visually-hidden" style="position:absolute;left:-9999px">Your question</label>
-    <textarea id="q" placeholder="e.g. returns negative hai, band kar du?"></textarea>
-    <button class="primary" type="submit">Ask</button>
-  </form>
+      <div class="chips" aria-label="Common questions">
+        <button class="chip" type="button" data-q="Salary is late this month, I can't pay the SIP">Money is tight this month</button>
+        <button class="chip" type="button" data-q="My instalment failed, autopay not approved">My instalment failed</button>
+        <button class="chip" type="button" data-q="What is the difference between stop, pause, skip and redeem?">Stop vs pause vs skip</button>
+        <button class="chip" type="button" data-q="Is 5 months of negative return normal?">Is this normal?</button>
+      </div>
 
-  <p class="note">This is not investment advice. It explains your options using your SIP details and doesn’t recommend any fund or stock. For personal advice, talk to a SEBI-registered investment adviser. Learn more at <a href="https://www.amfiindia.com/investor-corner" target="_blank" rel="noopener">AMFI investor corner</a>. Your message is processed by a third-party AI service, so don’t type account numbers or other personal details.</p>
-</main>
+      <p class="inline-note">This explains your options. It isn’t investment advice, and it never names a fund.</p>
+
+      <div id="log" aria-live="polite"></div>
+    </div>
+
+    <form id="f" class="composer">
+      <label for="q" class="sr">Your question</label>
+      <textarea id="q" placeholder="e.g. SIP band kar du?"></textarea>
+      <button class="btn primary" type="submit">Ask</button>
+    </form>
+  </section>
+</div>
 
 <script>
 const $ = s => document.querySelector(s);
@@ -108,37 +191,46 @@ function sipFacts(){
   const invested = months * monthly;
   const ret = invested ? ((value - invested) / invested * 100) : 0;
   $("#v-months").textContent = months; $("#v-monthly").textContent = fmt(monthly);
-  $("#v-invested").textContent = fmt(invested); $("#v-value").textContent = fmt(value);
-  $("#v-ret").textContent = (ret < 0 ? "−" : "+") + Math.abs(ret).toFixed(1) + "%";
-  $("#v-ret").className = ret < 0 ? "neg" : "";
+  $("#v-invested").textContent = fmt(invested);
+  $("#v-value").textContent = fmt(value);
+  const gain = value - invested; $("#v-gain").textContent = (gain < 0 ? "−" : "+") + "₹" + fmt(Math.abs(gain));
+  $("#v-ret").textContent = (ret < 0 ? "−" : "+") + Math.abs(ret).toFixed(1) + "% so far";
+  $("#v-ret").className = "ret" + (ret < 0 ? " neg" : "");
   return { monthly, months, invested, current_value: value, return_pct: +ret.toFixed(1), plan: "equity mutual fund, first SIP" };
 }
 ["#in-months","#in-monthly","#in-value"].forEach(id => $(id).addEventListener("input", sipFacts));
 
-function add(html, cls){ const d = document.createElement("div"); d.className = "msg " + cls; d.innerHTML = html; $("#log").appendChild(d); d.scrollIntoView({behavior:"smooth", block:"nearest"}); return d; }
+function add(html, cls){
+  const d = document.createElement("div"); d.className = "msg " + cls; d.innerHTML = html;
+  $("#log").appendChild(d); $("#scroll").scrollTop = $("#scroll").scrollHeight; return d;
+}
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const okIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>`;
+const infoIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>`;
 
 async function ask(text){
   add(esc(text), "me");
-  const wait = add("Checking your SIP…", "bot");
+  const wait = add(`<span class="typing" aria-label="Checking your SIP"><i></i><i></i><i></i></span>`, "bot");
   try{
     const r = await fetch("/api/chat", { method:"POST", headers:{"content-type":"application/json"},
       body: JSON.stringify({ message:text, sip:sipFacts(), entry }) });
     const d = await r.json();
     if (d.error) { wait.textContent = d.error; return; }
-    const opts = (d.options||[]).map(o => `<li><b>${esc(o.label)}</b>${esc(o.meaning)}</li>`).join("");
-    const src = (d.sources||[]).map(s => s.startsWith("http") ? `<a href="${esc(s)}" target="_blank" rel="noopener">${esc(s)}</a>` : esc(s)).join(" · ");
+    const opts = (d.options||[]).map(o => `<li><b>${esc(o.label)}</b><span>${esc(o.meaning)}</span></li>`).join("");
+    const src = (d.sources||[]).map(s => s.startsWith("http") ? `<a href="${esc(s)}" target="_blank" rel="noopener">${esc(s.replace(/^https?:\/\//,""))}</a>` : esc(s)).join(", ");
     wait.innerHTML = `<div>${esc(d.reply)}</div>${opts ? `<ul class="opts">${opts}</ul>` : ""}
       ${src ? `<div class="src">Sources: ${src}</div>` : ""}
       <div class="gate ${d.gated ? "fallback" : ""}">${d.gated
-        ? "Quality check didn’t pass, so you’re seeing a safe, standard answer."
-        : "Quality check passed: no fund picks, no predictions, no pressure."}</div>`;
+        ? infoIcon + "<span>Quality check didn’t pass, so you’re seeing a safe, standard answer.</span>"
+        : okIcon + "<span>Quality check passed: no fund picks, no predictions, no pressure.</span>"}</div>`;
+    $("#scroll").scrollTop = $("#scroll").scrollHeight;
   }catch(e){ wait.textContent = "Couldn’t reach the server. Check your connection and try again."; }
   entry = "chat";
 }
 
 $("#f").addEventListener("submit", e => { e.preventDefault(); const t = $("#q").value.trim(); if(t){ $("#q").value=""; ask(t); } });
-document.querySelectorAll(".chips button").forEach(b => b.addEventListener("click", () => ask(b.dataset.q)));
+$("#q").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("#f").requestSubmit(); } });
+document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => ask(b.dataset.q)));
 $("#cancelBtn").addEventListener("click", () => { entry = "cancel_screen"; ask("I want to cancel my SIP"); });
 $("#whyBtn").addEventListener("click", () => { entry = "negative_returns"; ask("Why is my SIP showing negative returns?"); });
 sipFacts();

@@ -14,7 +14,7 @@ from config import DATA_DIR, BASE_DIR
 
 st.set_page_config(page_title="SIP Continuation Discovery Engine", layout="wide")
 st.title("SIP continuation discovery engine: Groww")
-st.caption("Collects Play Store, App Store, Reddit, TradingQ&A and YouTube comments → keyword filter "
+st.caption("Collects Play Store, App Store, TradingQ&A and YouTube comments → keyword filter "
            "→ LLM tags each item with a fixed schema → theme counts, segment comparisons, opportunity "
            "ranking → checked against a hand-labelled golden set of real items.")
 
