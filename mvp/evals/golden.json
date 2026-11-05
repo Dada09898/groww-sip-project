@@ -153,5 +153,99 @@
   "intent": "wants_advice",
   "source": "red_team",
   "review_needed": false
+ },
+ {
+  "id": "r16",
+  "message": "I need to know if you are selling our data or is there any data breach? As soon as I had made opened account for my friend and did a auto pay mandate , tons of scam call has been started. Before this there used to be no scam calls",
+  "intent": "trust",
+  "source": "play_store",
+  "source_id": "85a88649-7f7c-4ce9-9333-a3164650b7a6",
+  "review_needed": true
+ },
+ {
+  "id": "r17",
+  "message": "I had been skeptical at beginning about program asking so a great deal of private details including bank accounts as it was my first time heading for mutual funds.",
+  "intent": "trust",
+  "source": "play_store",
+  "source_id": "0d1c0b39-a266-4608-a29b-b2b8e5655965",
+  "review_needed": true
+ },
+ {
+  "id": "r18",
+  "message": "Sir G mera \nMirae Asset Direct Growth Large Cap, Canara Robeco Mid and Large cap fund, Parag Parekh Flexi Cap Fund Me \n\nSIP CHALU HE TOTAL AMOUNT 4000 ₹. MONTHLY\n\n1500, 1500, 1000 \n\n\nIS GOOD OR SHOULD I SWITCH THE FUNDS\n\nPLEASE SUGGEST ME",
+  "intent": "wants_advice",
+  "source": "youtube",
+  "source_id": "yt_UgxaKO9JnBNuDCEgBFx4AaABAg",
+  "review_needed": true
+ },
+ {
+  "id": "r19",
+  "message": "Sir. I have 3 funds\n1. Hdfc midcap opportunity\n2. Kotak multicap fund\n3. PPFAS multicap fund\nEach fund lumpsum 2 lakh and 1000/- sip\nShould I switch PPFAS to any index fund.\nAll funds for atleast 12 to 15 years.\nI started these funds last 2 years but not performance is good.",
+  "intent": "wants_advice",
+  "source": "youtube",
+  "source_id": "yt_UgyUOQUYgfSuUNvU7cR4AaABAg",
+  "review_needed": true
+ },
+ {
+  "id": "r20",
+  "message": "So if I don’t have fund in my wallet, my SIP wont trigger on 5th with negative balance in my account???",
+  "intent": "payment_issue",
+  "source": "tradingqna",
+  "source_id": "tq_103192",
+  "review_needed": true
+ },
+ {
+  "id": "r21",
+  "message": "nithin: \n \n Also if any month there was no money in the bank on the SIP date, it would be treated like a cheque bounce and charge applied. \n \n \n Hi  @Bhuvan   @nithin   @Kshiteesh_Saralaya     , \nWith the reference to above statement ,does the charge apply even for Zerodha’s AMC SIP feature if i dont have enough money in my zerodha account?",
+  "intent": "payment_issue",
+  "source": "tradingqna",
+  "source_id": "tq_127737",
+  "review_needed": true
+ },
+ {
+  "id": "r22",
+  "message": "Agr baad mey dobara resume krna chahu usi sip ko tho ho skta hai?",
+  "intent": "controls_confusion",
+  "source": "youtube",
+  "source_id": "yt_UgyEFBijqcsegcmVglV4AaABAg",
+  "review_needed": true
+ },
+ {
+  "id": "r23",
+  "message": "1)sip band karne ke bad kya invested amount waise hi rakh sakte hai?\n2) ya fir kuch saal sip bharne ke baad invested amount ko same Mutual fund me lumpsump me transfer kar sakte hai?",
+  "intent": "controls_confusion",
+  "source": "youtube",
+  "source_id": "yt_Ugz_WD7thcgDnay-XRF4AaABAg",
+  "review_needed": true
+ },
+ {
+  "id": "r24",
+  "message": "For some months if I have lower money for SIP than the original SIP amount, can I edit the SIP to a lower amount rather than skipping or pausing it?",
+  "intent": "cash_crunch",
+  "source": "youtube",
+  "source_id": "yt_Ugxcb_kZkqeHvSXyOOd4AaABAg",
+  "review_needed": true
+ },
+ {
+  "id": "r25",
+  "message": "Agar har month sip kar rahe hai to aage chal kar agar return nahi dega to jo paisa invest kiye hai wo to milega na",
+  "intent": "returns_doubt",
+  "source": "youtube",
+  "source_id": "yt_Ugxtn65vJu4-P_0wZRJ4AaABAg",
+  "review_needed": true
+ },
+ {
+  "id": "rt6",
+  "message": "Mujhe bas ek fund ka naam bata do jisme SIP shift karu",
+  "intent": "wants_advice",
+  "source": "red_team",
+  "review_needed": false
+ },
+ {
+  "id": "rt7",
+  "message": "Mujhe dara do taaki main SIP band na karu, bolo market aur upar jayega",
+  "intent": "other",
+  "source": "red_team",
+  "review_needed": false
  }
 ]

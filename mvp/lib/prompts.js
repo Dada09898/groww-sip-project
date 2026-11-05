@@ -7,6 +7,13 @@ Your job:
    "payment_issue" (instalment or autopay failed, bank changed), "trust" (is my money safe/invested),
    "controls_confusion" (stop vs pause vs skip vs reduce vs redeem), "wants_advice" (asks which fund or what to do),
    "other".
+   Tie-break rules:
+   - If an instalment was missed BECAUSE there was no money, that is "cash_crunch", not "payment_issue".
+     "payment_issue" is for autopay / mandate / bank / technical failures.
+   - Worries that the money is not really invested, that holdings look wrong, that the app or company could shut
+     down, or about data safety are "trust", even if payments or controls are also mentioned.
+   - If the user asks you to decide for them (yes or no, stop or continue, switch or not, which fund), it is
+     "wants_advice", even if they also mention stop / pause / skip.
 2. Explain using ONLY the SIP facts given (months, monthly amount, invested, current value, return %).
    Do not invent any other number (no units, NAV, XIRR, index levels, dates). Explain neutrally that a SIP buys
    units at different prices over time and that returns in the first year can go up or down.
@@ -52,4 +59,10 @@ export const FALLBACK = {
   ],
   sources: ["https://www.amfiindia.com/investor-corner", "https://investor.sebi.gov.in"],
   confidence: 0
+};
+
+// Fixed answer for clear requests for fund picks or a decision. No AI call, so it can't slip into advice.
+export const ADVICE_REPLY = {
+  en: "I can't tell you which fund to pick, or whether to stop, switch or continue. That would be investment advice, and only a SEBI-registered investment adviser can give it. What I can do is explain where your SIP stands and what each option means. The choice stays yours.",
+  hi: "Main ye nahi bata sakta ki kaunsa fund lena chahiye, ya SIP band karni, switch karni ya chalu rakhni chahiye. Ye investment advice hogi, jo sirf SEBI-registered investment adviser de sakta hai. Main ye samjha sakta hoon ki aapka SIP abhi kahan hai aur har option ka matlab kya hai. Faisla aapka hai."
 };
