@@ -1,0 +1,12 @@
+opportunity,app_store,play_store,tradingqna,youtube
+A. Can't judge if SIP is 'working',0,25,10,37
+B. Temporary cash crunch -> cancel instead of skip,0,1,0,4
+C. Autopay/mandate failure -> silent lapse,0,185,23,8
+C2. Confusing SIP controls (stop/pause/skip/redeem),0,27,22,47
+C3. App errors block SIP set-up or instalments,2,150,9,3
+D. Doubt about chosen fund (blocked: no fund advice),0,8,9,3
+E. Trust / is my money invested?,0,5,0,1
+F. Lost the reason to invest,0,0,0,1
+G. Swayed by outside advice,0,0,0,2
+H. Support/refund failures erode trust,0,106,0,4
+Other,0,16,12,13

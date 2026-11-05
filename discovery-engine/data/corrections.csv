@@ -1,0 +1,4 @@
+item_id,ai_output,corrected_to,why
+5346b028-c190-43ac-80b0-0fc9ab422b63,"v1: trigger=app_confusion, action=stopped","trigger=app_bug, action=blocked","Review text: 'Unable to start new SIP app keepscrashing.' v1 prompt guessed actions that the text never stated. The schema had no category for app errors. Added app_bug and blocked, and told the model not to guess."
+"v2 prompt, golden set",v2: action agreement 0% (n=8),v3: 50% (n=8),"The v2 rule ('only explicit actions') overcorrected: clear intent like 'would rather use another app' became unknown. Rebalanced the rule to accept clearly stated intent. No golden-set text was copied into the prompt, to keep the test fair."
+cc55ce2e-d307-46a5-abc4-5dd514df718c,"v3: relevant=true, trigger=app_bug, action=blocked",relevant=false,'After update my stocks dashboard shows empty': a display bug was treated as a blocked SIP. Kept as a known failure; it slightly over-counts app errors.

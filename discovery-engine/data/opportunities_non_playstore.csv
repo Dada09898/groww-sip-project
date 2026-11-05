@@ -1,0 +1,12 @@
+opportunity,mentions,avg_severity,fixability,n_sources,share_pct,score
+C2. Confusing SIP controls (stop/pause/skip/redeem),69,3.29,4,2,32.9,17.3
+A. Can't judge if SIP is 'working',47,2.96,5,2,22.4,13.3
+C. Autopay/mandate failure -> silent lapse,31,3.65,4,2,14.8,8.6
+C3. App errors block SIP set-up or instalments,14,3.64,2,3,6.7,2.0
+Other,25,3.92,1,2,11.9,1.9
+B. Temporary cash crunch -> cancel instead of skip,4,4.0,5,1,1.9,1.5
+H. Support/refund failures erode trust,4,4.5,3,1,1.9,1.0
+D. Doubt about chosen fund (blocked: no fund advice),12,2.83,1,2,5.7,0.6
+F. Lost the reason to invest,1,4.0,4,1,0.5,0.3
+E. Trust / is my money invested?,1,4.0,3,1,0.5,0.2
+G. Swayed by outside advice,2,2.0,2,1,1.0,0.2

@@ -1,0 +1,7 @@
+influenced_by,blocked,considering_stop,continuing,paused,reduced,skipped,started,starting,stopped,unknown,n
+advisor,0.0,0.5,0.5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2
+app_ad,0.33,0.0,0.33,0.0,0.0,0.0,0.33,0.0,0.0,0.0,3
+customer_support,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1
+friend_family,0.0,0.09,0.36,0.0,0.0,0.0,0.45,0.0,0.09,0.0,11
+self,0.22,0.13,0.33,0.0,0.0,0.01,0.14,0.0,0.16,0.01,691
+youtube_finfluencer,0.0,0.05,0.48,0.0,0.0,0.0,0.43,0.0,0.0,0.05,21

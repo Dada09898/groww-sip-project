@@ -1,0 +1,7 @@
+lifecycle_stage,app_bug,app_confusion,cash_crunch,external_advice,fund_doubt,goal_changed,job_loss,mandate_or_payment_failure,none,other,returns_negative,returns_unclear,support_service,trust_safety
+after_12,19,11,1,1,7,0,1,19,83,16,22,12,49,1
+continuing,19,11,1,0,0,1,0,5,43,3,1,2,2,0
+month_1_3,7,14,1,0,0,0,0,24,11,1,1,6,7,0
+month_4_12,4,5,0,0,2,0,0,9,15,2,4,4,3,0
+starting,48,25,0,1,5,0,0,64,105,5,1,1,10,3
+unknown,67,30,1,0,6,0,0,95,34,14,9,9,39,2

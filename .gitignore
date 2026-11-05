@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+node_modules/
+.vercel/
+discovery-engine/.streamlit/secrets.toml
+# big inputs: keep on your machine, the dashboard only needs the outputs
+discovery-engine/data/groww_reviews_last5y.csv
+discovery-engine/data/raw.csv
+
+discovery-engine/data/sources/
+discovery-engine/data/filtered.csv
+mvp/evals/results.csv

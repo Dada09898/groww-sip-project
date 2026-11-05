@@ -1,0 +1,4 @@
+income,app_bug,app_confusion,cash_crunch,external_advice,fund_doubt,goal_changed,job_loss,mandate_or_payment_failure,none,other,returns_negative,returns_unclear,support_service,trust_safety
+salaried,0.0,0.0,0.0,0.0,0.0,0.0,0.1,0.0,0.7,0.0,0.2,0.0,0.0,0.0
+student,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+unknown,0.16,0.09,0.0,0.0,0.02,0.0,0.0,0.21,0.28,0.04,0.04,0.03,0.11,0.01

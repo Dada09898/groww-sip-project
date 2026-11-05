@@ -1,0 +1,11 @@
+{
+  "name": "sip-checkin-companion",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "eval": "node evals/run_eval.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
